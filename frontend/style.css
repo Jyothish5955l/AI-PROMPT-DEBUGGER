@@ -1,0 +1,828 @@
+/* =====================================================
+   PROMPT DEBUGGER
+   ORIGINAL DARK STYLE
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    padding: 20px;
+
+    background: #0f172a;
+
+    color: white;
+
+    font-family:
+        Arial,
+        sans-serif;
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.container {
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 20px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    font-size: 30px;
+
+    font-weight: bold;
+}
+
+
+.logo-icon {
+
+    font-size: 35px;
+
+    color: #60a5fa;
+}
+
+
+.subtitle {
+
+    color: #94a3b8;
+
+    margin-top: 10px;
+
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.prompt-section {
+
+    background: #1e293b;
+
+    border: 1px solid #334155;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+}
+
+
+.section-header h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 5px;
+}
+
+
+.section-header p {
+
+    color: #94a3b8;
+
+    margin-top: 0;
+}
+
+
+/* =====================================================
+   TEXTAREA
+===================================================== */
+
+.textarea-wrapper {
+
+    margin-top: 20px;
+}
+
+
+textarea {
+
+    width: 100%;
+
+    min-height: 140px;
+
+    padding: 14px;
+
+    resize: vertical;
+
+    background: #0f172a;
+
+    color: white;
+
+    border: 1px solid #475569;
+
+    border-radius: 8px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+
+textarea:focus {
+
+    outline: none;
+
+    border-color: #60a5fa;
+}
+
+
+.textarea-footer {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-top: 6px;
+}
+
+
+.character-count {
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+button {
+
+    border: none;
+
+    border-radius: 7px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+
+.analyze-btn {
+
+    margin-top: 15px;
+
+    padding: 11px 20px;
+
+    background: #3b82f6;
+
+    color: white;
+}
+
+
+.analyze-btn:hover {
+
+    background: #2563eb;
+}
+
+
+button:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.card {
+
+    background: #1e293b;
+
+    border: 1px solid #334155;
+
+    border-radius: 10px;
+
+    padding: 18px;
+
+    margin-bottom: 15px;
+}
+
+
+.card-title {
+
+    font-weight: bold;
+
+    margin-bottom: 12px;
+
+    font-size: 16px;
+}
+
+
+/* =====================================================
+   SCORE
+===================================================== */
+
+.score {
+
+    font-size: 42px;
+
+    font-weight: bold;
+
+    color: #60a5fa;
+}
+
+
+.score-label {
+
+    color: #94a3b8;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   ISSUES
+===================================================== */
+
+.issue {
+
+    background: #334155;
+
+    padding: 11px;
+
+    margin-top: 8px;
+
+    border-radius: 7px;
+
+    color: #f1f5f9;
+
+    line-height: 1.5;
+}
+
+
+.success-issue {
+
+    background: #14532d;
+}
+
+
+/* =====================================================
+   IMPROVED PROMPT
+===================================================== */
+
+.improved-prompt {
+
+    background: #0f172a;
+
+    border: 1px solid #475569;
+
+    border-radius: 8px;
+
+    padding: 15px;
+
+    white-space: pre-wrap;
+
+    line-height: 1.6;
+
+    color: #f1f5f9;
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+===================================================== */
+
+.action-buttons {
+
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-top: 15px;
+}
+
+
+.run-btn {
+
+    background: #2563eb;
+
+    color: white;
+
+    padding: 10px 16px;
+}
+
+
+.run-btn:hover {
+
+    background: #1d4ed8;
+}
+
+
+.external-btn {
+
+    background: #16a34a;
+
+    color: white;
+
+    padding: 10px 16px;
+}
+
+
+.external-btn:hover {
+
+    background: #15803d;
+}
+
+
+.copy-btn {
+
+    background: #475569;
+
+    color: white;
+
+    padding: 10px 16px;
+}
+
+
+.copy-btn:hover {
+
+    background: #64748b;
+}
+
+
+/* =====================================================
+   EXPLANATION
+===================================================== */
+
+.explanation {
+
+    color: #cbd5e1;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   AI RESPONSE
+===================================================== */
+
+.response-card {
+
+    margin-top: 15px;
+}
+
+
+.answer-header {
+
+    font-weight: bold;
+
+    color: #60a5fa;
+
+    margin-bottom: 12px;
+}
+
+
+.answer-text {
+
+    color: #e2e8f0;
+
+    line-height: 1.7;
+
+    white-space: pre-wrap;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading {
+
+    color: #94a3b8;
+
+    padding: 10px;
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+.error-card {
+
+    background: #7f1d1d;
+
+    color: #fecaca;
+
+    border-color: #991b1b;
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+
+    position: fixed;
+
+    left: 0;
+
+    top: 0;
+
+    width: 300px;
+
+    height: 100vh;
+
+    padding: 20px;
+
+    background: #111827;
+
+    border-right: 1px solid #334155;
+
+    overflow-y: auto;
+
+    z-index: 1000;
+
+    transform: translateX(-100%);
+
+    transition:
+        transform 0.25s ease;
+}
+
+
+.sidebar.open {
+
+    transform: translateX(0);
+}
+
+
+.sidebar-header {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+
+.sidebar-header h2 {
+
+    margin: 0;
+}
+
+
+.sidebar-subtitle {
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin: 5px 0 0;
+}
+
+
+.close-sidebar {
+
+    background: transparent;
+
+    color: #94a3b8;
+
+    padding: 5px;
+
+    margin: 0;
+}
+
+
+.close-sidebar:hover {
+
+    color: white;
+
+    background: #334155;
+}
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+.menu-toggle {
+
+    position: fixed;
+
+    left: 15px;
+
+    top: 15px;
+
+    z-index: 1100;
+
+    padding: 9px 13px;
+
+    background: #1e293b;
+
+    color: white;
+
+    border: 1px solid #475569;
+}
+
+
+.menu-toggle:hover {
+
+    background: #334155;
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+.search-container {
+
+    position: relative;
+
+    margin-bottom: 10px;
+}
+
+
+.search-icon {
+
+    position: absolute;
+
+    left: 10px;
+
+    top: 10px;
+
+    color: #64748b;
+}
+
+
+#searchHistory {
+
+    width: 100%;
+
+    padding: 10px 10px 10px 35px;
+
+    background: #1e293b;
+
+    color: white;
+
+    border: 1px solid #475569;
+
+    border-radius: 7px;
+}
+
+
+#searchHistory:focus {
+
+    outline: none;
+
+    border-color: #60a5fa;
+}
+
+
+#searchHistory::placeholder {
+
+    color: #64748b;
+}
+
+
+/* =====================================================
+   SIDEBAR BUTTONS
+===================================================== */
+
+.new-chat-btn,
+.clear-btn {
+
+    width: 100%;
+
+    padding: 10px;
+
+    margin: 5px 0;
+}
+
+
+.new-chat-btn {
+
+    background: #3b82f6;
+
+    color: white;
+}
+
+
+.new-chat-btn:hover {
+
+    background: #2563eb;
+}
+
+
+.clear-btn {
+
+    background: #7f1d1d;
+
+    color: #fecaca;
+}
+
+
+.clear-btn:hover {
+
+    background: #991b1b;
+}
+
+
+/* =====================================================
+   HISTORY
+===================================================== */
+
+.history-list {
+
+    margin-top: 15px;
+}
+
+
+.history-item {
+
+    position: relative;
+
+    background: #1e293b;
+
+    border: 1px solid #334155;
+
+    border-radius: 8px;
+
+    margin-bottom: 8px;
+
+    padding: 10px;
+
+    cursor: pointer;
+}
+
+
+.history-item:hover {
+
+    background: #334155;
+}
+
+
+.history-content {
+
+    padding-right: 35px;
+}
+
+
+.history-title {
+
+    color: white;
+
+    font-size: 14px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+.history-meta {
+
+    color: #60a5fa;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+
+.delete-history-btn {
+
+    position: absolute;
+
+    right: 7px;
+
+    top: 7px;
+
+    margin: 0;
+
+    padding: 4px 7px;
+
+    background: transparent;
+
+    color: #ef4444;
+}
+
+
+.delete-history-btn:hover {
+
+    background: #450a0a;
+
+    color: #f87171;
+}
+
+
+.empty-history {
+
+    color: #64748b;
+
+    text-align: center;
+
+    padding: 20px 5px;
+
+    font-size: 13px;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    padding: 30px 0;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    body {
+
+        padding: 10px;
+    }
+
+
+    .container {
+
+        padding: 10px;
+    }
+
+
+    .logo {
+
+        font-size: 25px;
+    }
+
+
+    .sidebar {
+
+        width: 280px;
+    }
+
+
+    .action-buttons {
+
+        flex-direction: column;
+    }
+
+
+    .action-buttons button {
+
+        width: 100%;
+    }
+
+}

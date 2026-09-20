@@ -1,0 +1,51 @@
+{
+    "manifest_version": 3,
+
+    "name": "Prompt Debugger AI Runner",
+
+    "version": "1.0.0",
+
+    "description": "Run improved prompts automatically in ChatGPT, Gemini and Claude.",
+
+    "permissions": [
+        "tabs",
+        "scripting"
+    ],
+
+    "host_permissions": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://gemini.google.com/*",
+        "https://claude.ai/*"
+    ],
+
+    "background": {
+        "service_worker": "background.js"
+    },
+
+    "content_scripts": [
+        {
+            "matches": [
+                "https://chatgpt.com/*",
+                "https://chat.openai.com/*",
+                "https://gemini.google.com/*",
+                "https://claude.ai/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_idle"
+        }
+    ],
+
+    "externally_connectable": {
+        "matches": [
+            "http://127.0.0.1:5500/*",
+            "http://localhost:5500/*"
+        ]
+    },
+
+    "action": {
+        "default_title": "Prompt Debugger AI Runner"
+    }
+}

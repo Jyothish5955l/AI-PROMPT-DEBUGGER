@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prompt Debugger</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+<!-- ==================================================
+     SIDEBAR TOGGLE
+================================================== -->
+
+<button
+    class="menu-toggle"
+    onclick="toggleSidebar()"
+    aria-label="Open chat history"
+>
+    ☰
+</button>
+
+
+<!-- ==================================================
+     APPLICATION
+================================================== -->
+
+<div class="app">
+
+
+    <!-- ==================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar"
+    >
+
+        <div class="sidebar-header">
+
+            <div>
+
+                <h2>
+                    💬 Chats
+                </h2>
+
+                <p class="sidebar-subtitle">
+                    Prompt history
+                </p>
+
+            </div>
+
+
+            <button
+                class="close-sidebar"
+                onclick="toggleSidebar()"
+            >
+                ✕
+            </button>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="search-container">
+
+            <span class="search-icon">
+                🔍
+            </span>
+
+            <input
+                type="text"
+                id="searchHistory"
+                placeholder="Search chats..."
+                oninput="searchHistory()"
+            >
+
+        </div>
+
+
+        <!-- NEW CHAT -->
+
+        <button
+            class="new-chat-btn"
+            onclick="newChat()"
+        >
+
+            <span>
+                ＋
+            </span>
+
+            New Chat
+
+        </button>
+
+
+        <!-- CLEAR -->
+
+        <button
+            class="clear-btn"
+            onclick="clearAllHistory()"
+        >
+
+            🗑 Clear All History
+
+        </button>
+
+
+        <!-- HISTORY -->
+
+        <div
+            id="history"
+            class="history-list"
+        >
+
+            <div class="empty-history">
+                💬 No conversations yet.
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ==================================================
+         MAIN
+    ================================================== -->
+
+    <main
+        class="container"
+        id="mainContent"
+    >
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div class="logo">
+
+                <div class="logo-icon">
+                    ⬢
+                </div>
+
+                <span>
+                    Prompt Debugger
+                </span>
+
+            </div>
+
+
+            <p class="subtitle">
+
+                Analyze, improve and test your prompts
+                with AI
+
+            </p>
+
+        </section>
+
+
+        <!-- ==================================================
+             PROMPT
+        ================================================== -->
+
+        <section class="prompt-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        ✨ Your Prompt
+                    </h2>
+
+                    <p>
+                        Enter a prompt and let AI find
+                        ways to improve it.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="textarea-wrapper">
+
+                <textarea
+                    id="prompt"
+                    placeholder="Example: Explain artificial intelligence..."
+                    spellcheck="true"
+                ></textarea>
+
+
+                <div class="textarea-footer">
+
+                    <span
+                        id="characterCount"
+                        class="character-count"
+                    >
+                        0 characters
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="analyze-btn"
+                onclick="analyze()"
+            >
+
+                🧠 Analyze Prompt
+
+            </button>
+
+        </section>
+
+
+        <!-- ==================================================
+             OUTPUT
+        ================================================== -->
+
+        <section
+            id="output"
+            class="output-section"
+        ></section>
+
+
+        <!-- ==================================================
+             FOOTER
+        ================================================== -->
+
+        <footer class="footer">
+
+            <span>
+                Powered by Groq
+            </span>
+
+            <span>
+                •
+            </span>
+
+            <span>
+                Prompt Engineering Lab
+            </span>
+
+        </footer>
+
+
+    </main>
+
+</div>
+
+
+<script src="script.js"></script>
+
+
+<!-- CHARACTER COUNTER -->
+
+<script>
+
+const promptBox =
+    document.getElementById("prompt");
+
+const characterCount =
+    document.getElementById("characterCount");
+
+
+promptBox.addEventListener(
+    "input",
+    function() {
+
+        const count =
+            promptBox.value.length;
+
+        characterCount.textContent =
+            `${count} character${count === 1 ? "" : "s"}`;
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
