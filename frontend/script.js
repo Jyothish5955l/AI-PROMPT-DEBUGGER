@@ -1216,3 +1216,211 @@ document.addEventListener(
     }
 
 );
+
+// ======================================================
+// VOICE PROMPT INPUT
+// ======================================================
+
+let speechRecognition = null;
+let isListening = false;
+let voiceBaseText = "";
+
+function initializeVoiceInput() {
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+    const micButton =
+        document.getElementById("micButton");
+
+    if (!SpeechRecognition) {
+
+        if (micButton) {
+            micButton.disabled = true;
+            micButton.title =
+                "Voice input is not supported in this browser";
+        }
+
+        return;
+    }
+
+
+    speechRecognition = new SpeechRecognition();
+
+    speechRecognition.continuous = false;
+
+    speechRecognition.interimResults = true;
+
+    speechRecognition.lang = "en-US";
+
+
+    speechRecognition.onstart = function() {
+
+        isListening = true;
+
+        const button =
+            document.getElementById("micButton");
+
+        const status =
+            document.getElementById("voiceStatus");
+
+        if (button) {
+            button.classList.add("listening");
+            button.textContent = "⏹️";
+        }
+
+        if (status) {
+            status.textContent =
+                "🎙️ Listening... Speak your prompt.";
+            status.classList.add("listening");
+        }
+    };
+
+
+    speechRecognition.onresult = function(event) {
+
+        let transcript = "";
+
+        for (
+            let i = event.resultIndex;
+            i < event.results.length;
+            i++
+        ) {
+
+            transcript +=
+                event.results[i][0].transcript;
+        }
+
+
+        const promptBox =
+            document.getElementById("prompt");
+
+        if (!promptBox) {
+            return;
+        }
+
+
+        promptBox.value =
+            voiceBaseText +
+            (voiceBaseText ? " " : "") +
+            transcript.trim();
+
+
+        // Update character counter
+
+        promptBox.dispatchEvent(
+            new Event("input")
+        );
+    };
+
+
+    speechRecognition.onerror = function(event) {
+
+        console.error(
+            "Speech recognition error:",
+            event.error
+        );
+
+        const status =
+            document.getElementById("voiceStatus");
+
+        if (status) {
+
+            if (event.error === "not-allowed") {
+
+                status.textContent =
+                    "⚠️ Microphone permission was denied.";
+
+            } else {
+
+                status.textContent =
+                    "⚠️ Could not recognize your speech. Please try again.";
+            }
+        }
+    };
+
+
+    speechRecognition.onend = function() {
+
+        isListening = false;
+
+        const button =
+            document.getElementById("micButton");
+
+        const status =
+            document.getElementById("voiceStatus");
+
+        if (button) {
+            button.classList.remove("listening");
+            button.textContent = "🎙️";
+        }
+
+        if (status) {
+
+            if (status.textContent.includes("Listening")) {
+                status.textContent =
+                    "Voice input complete.";
+            }
+
+            status.classList.remove("listening");
+        }
+    };
+}
+
+
+function toggleVoiceInput() {
+
+    if (!speechRecognition) {
+
+        alert(
+            "Voice input is not supported in this browser. " +
+            "Please use Google Chrome or another supported browser."
+        );
+
+        return;
+    }
+
+
+    const promptBox =
+        document.getElementById("prompt");
+
+    if (!promptBox) {
+        return;
+    }
+
+
+    if (isListening) {
+
+        speechRecognition.stop();
+
+        return;
+    }
+
+
+    // Preserve text that the user already typed
+
+    voiceBaseText =
+        promptBox.value.trim();
+
+
+    try {
+
+        speechRecognition.start();
+
+    } catch (error) {
+
+        console.error(
+            "Could not start speech recognition:",
+            error
+        );
+    }
+}
+
+
+// Initialize voice input when page loads
+
+document.addEventListener(
+    "DOMContentLoaded",
+    initializeVoiceInput
+);

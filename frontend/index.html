@@ -192,11 +192,32 @@
 
             <div class="textarea-wrapper">
 
-                <textarea
-                    id="prompt"
-                    placeholder="Example: Explain artificial intelligence..."
-                    spellcheck="true"
-                ></textarea>
+                <div class="prompt-input-wrapper">
+
+                    <textarea
+                        id="prompt"
+                        placeholder="Type your prompt or use the microphone..."
+                        spellcheck="true"
+                    ></textarea>
+
+                    <button
+                        type="button"
+                        id="micButton"
+                        class="mic-btn"
+                        onclick="toggleVoiceInput()"
+                        title="Speak your prompt"
+                        aria-label="Speak your prompt"
+                    >
+                        🎙️
+                    </button>
+
+                </div>
+
+                <div
+                    id="voiceStatus"
+                    class="voice-status"
+                    aria-live="polite"
+                ></div>
 
 
                 <div class="textarea-footer">
